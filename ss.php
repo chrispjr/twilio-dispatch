@@ -18,6 +18,7 @@ $ss_options = array(
 curl_setopt_array($ch, $ss_options);
 $ss_results = curl_exec($ch);
 curl_close($ch);
+var_dump($_REQUEST);
 var_dump($ss_results); 
 
 ?>
