@@ -37,7 +37,7 @@ if ($body == "pickup") {
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 	    ?>
 	    <Response>
-	        <Message><?php var_dump($ss_results); ?></Message>
+	        <Message><?php var_dump($ss_query); ?></Message>
 	    </Response>
 	    <?php
     }
