@@ -23,16 +23,16 @@ if ($body == "pickup") {
     	$ss['street'] = urlencode($body);
     	$ss['candidates'] = "10";
     	$ss_query = http_build_query($ss);
-    	$ch = curl_init();
-    	$ss_options = array(
-    		CURLOPT_URL => $url,
-    		CURLOPT_POST => false,
-    		CURLOPT_POSTFIELDS => $ss_query,
-    		CURLOPT_RETURNTRANSFER => true
-    	);
-    	curl_setopt_array($ch, $ss_options);
-    	$ss_results = curl_exec($ch);
-    	curl_close($ch);
+    	// $ch = curl_init();
+    	// $ss_options = array(
+    	// 	CURLOPT_URL => $url,
+    	// 	CURLOPT_POST => false,
+    	// 	CURLOPT_POSTFIELDS => $ss_query,
+    	// 	CURLOPT_RETURNTRANSFER => true
+    	// );
+    	// curl_setopt_array($ch, $ss_options);
+    	// $ss_results = curl_exec($ch);
+    	// curl_close($ch);
     	header("content-type: text/xml");
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 	    echo "<Response><Message>var_dump:$ss_query</Message></Response>";
