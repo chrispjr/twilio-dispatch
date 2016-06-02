@@ -22,8 +22,7 @@ $body = $_REQUEST['Body'];
 	    ?>
 
 	    <Response>
-	        <Message>
-	        	Debug:
+	        <Message>Debug:
 	        	<?php 
 	        	$url = "https://api.smartystreets.com/street-address";
 	        	$ss['auth_id'] = "f0630cb2-1a6e-a4c9-df41-2d1192123666";
