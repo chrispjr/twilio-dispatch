@@ -2,6 +2,14 @@
 
 $body = $_REQUEST['Body'];
 
+function send_validation_response($ss_results) {
+	if (count($ss_results) === 1) {
+		$street = $ss_results[0]->delivery_line_1;
+		$city = $ss_results[0]->last_line;
+		echo "Please confirm that your pickup address is:\n Street Address: $street\n City: $city";
+	}
+}
+
 	if ($body == "pickup") {
 		header("content-type: text/xml");
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -47,7 +55,8 @@ $body = $_REQUEST['Body'];
 	        	$ss_results = curl_exec($ch);
 	        	curl_close($ch);
 	        	$ss_results = json_decode($ss_results);
-	        	var_dump($ss_results);
+	        	// var_dump($ss_results);
+	        	send_validation_response($ss_results);
 	        	?>
 	        </Message>
 	    </Response>
