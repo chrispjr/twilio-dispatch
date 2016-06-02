@@ -1,6 +1,6 @@
 <?php
 
-$body = $_REQUEST['body'];
+$body = $_REQUEST['Body'];
 
 if ($body == "pickup") {
 	header("content-type: text/xml");
