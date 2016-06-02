@@ -29,7 +29,7 @@ $body = $_REQUEST['Body'];
 	        	$ss['auth_token'] = "eRQJMxOomkO0ksHbLPNS";
 	        	// $ss['street'] = urlencode($body);
 	        	// $ss['candidates'] = "10";
-	        	$ss_query = http_build_query($ss);
+	        	// $ss_query = http_build_query($ss);
 	        	// $ch = curl_init();
 	        	// $ss_options = array(
 	        	// 	CURLOPT_URL => $url,
@@ -40,7 +40,7 @@ $body = $_REQUEST['Body'];
 	        	// curl_setopt_array($ch, $ss_options);
 	        	// $ss_results = curl_exec($ch);
 	        	// curl_close($ch);
-	        	var_dump($ss_query); 
+	        	var_dump($ss); 
 	        	?>
 	        </Message>
 	    </Response>
