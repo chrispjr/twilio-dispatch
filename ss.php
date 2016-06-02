@@ -8,7 +8,7 @@ $body = $_REQUEST['Body'];
 // $ss['candidates'] = "10";
 // $ss_query = http_build_query($ss);
 // $url = "https://api.smartystreets.com/street-address?$ss_query";
-$url = "https://api.smartystreets.com/street-address?auth-id=f0630cb2-1a6e-a4c9-df41-2d1192123666&auth-token=eRQJMxOomkO0ksHbLPNS&street=".$Body;
+$url = "https://api.smartystreets.com/street-address?auth-id=f0630cb2-1a6e-a4c9-df41-2d1192123666&auth-token=eRQJMxOomkO0ksHbLPNS&street=".$body;
 $ch = curl_init();
 $ss_options = array(
 	CURLOPT_URL => $url,
