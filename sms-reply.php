@@ -6,7 +6,7 @@ function send_validation_response($ss_results) {
 	if (count($ss_results) === 1) {
 		$street = $ss_results[0]->delivery_line_1;
 		$city = $ss_results[0]->last_line;
-		echo "Please confirm that your pickup address is:\n Street Address: $street\n City: $city";
+		echo "Please confirm that your pickup address is:\n $street\n $city";
 	}
 }
 
