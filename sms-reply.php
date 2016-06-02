@@ -35,11 +35,7 @@ if ($body == "pickup") {
     	curl_close($ch);
     	header("content-type: text/xml");
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-	    ?>
-	    <Response>
-	        <Message>var_dump:<?php var_dump($ss_query); ?></Message>
-	    </Response>
-	    <?php
+	    echo "<Response><Message>var_dump:$ss_query</Message></Response>";
     }
 
 ?>
