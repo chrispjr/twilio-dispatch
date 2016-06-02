@@ -1,6 +1,8 @@
 <?php
 
-$street = $_REQUEST['street'];
+$street = $_REQUEST['Body'];
+$city = $_REQUEST['FromCity'];
+$state = $_REQUEST['FromState'];
 
 // $ss['auth_id'] = "f0630cb2-1a6e-a4c9-df41-2d1192123666";
 // $ss['auth_token'] = "eRQJMxOomkO0ksHbLPNS";
