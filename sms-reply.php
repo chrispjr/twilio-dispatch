@@ -5,12 +5,20 @@ $body = $_REQUEST['Body'];
 function send_validation_response($ss_results) {
 	
 	if (count($ss_results) === 1) {
+
 		$street = $ss_results[0]->delivery_line_1;
+
 		$city = $ss_results[0]->last_line;
+
 		echo "Please confirm that your pickup address is:\n $street\n $city";
+
 	} else {
 
 		$i = 0;
+
+		$addresses = array();
+
+		$response = "";
 
 		foreach ($ss_results as $ss_result) {
 
@@ -18,13 +26,15 @@ function send_validation_response($ss_results) {
 
 			$city = $ss_result->last_line;
 
-			$addresses[$i] = "$street\n $city";
+			$response += "$i: $street\n $city\n";
 
 			$i++;
 
 		}
 
-		build_confirm_message($addresses);
+		// build_confirm_message($addresses);
+
+		echo $response;
 
 	}
 
@@ -52,27 +62,27 @@ function build_confirm_message($addresses) {
 
 }
 
-function debug($request, $addresses) {
+// function debug($request, $addresses) {
 
-	$response = "Debug output:\n";
+// 	$response = "Debug output:\n";
 
-	if (!empty($request)) {
+// 	if (!empty($request)) {
 
-		$response += "var_dump(\$request):\n";
+// 		$response += "var_dump(\$request):\n";
 
-		$response += var_dump($request);
+// 		$response += var_dump($request);
 
-	}
+// 	}
 
-	if (!empty($addresses)) {
+// 	if (!empty($addresses)) {
 		
-		$response += "var_dump(\$addresses):\n";
+// 		$response += "var_dump(\$addresses):\n";
 
-		$response += var_dump($addresses);
+// 		$response += var_dump($addresses);
 
-	}
+// 	}
 
-}
+// }
 
 	if ($body == "pickup") {
 		header("content-type: text/xml");
