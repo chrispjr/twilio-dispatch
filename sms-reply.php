@@ -122,7 +122,9 @@ function build_confirm_message($addresses) {
 
 	foreach ($addresses as $address) {
 
-		// var_dump($address);
+		var_dump("---ADD--");
+		var_dump($address);
+
 
 		foreach ($address as $key) {
 			// var_dump("$key");
