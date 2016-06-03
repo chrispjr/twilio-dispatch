@@ -39,10 +39,26 @@ function build_confirm_message($addresses) {
 
 		$response += "$i: $address\n";
 
+		$i++;
+
 	}
 
 	return $response;
 
+}
+
+function debug($request, $addresses) {
+	
+
+	$response = "Debug output:\n";
+
+	if (!empty($request)) {
+
+		$response += "var_dump(\$request):\n";
+
+		$response += var_dump($request);
+
+	}
 }
 
 	if ($body == "pickup") {
