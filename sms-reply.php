@@ -23,7 +23,7 @@ function send_validation_response($ss_results) {
 		foreach ($ss_results as $ss_result) {
 
 			var_dump($ss_result);
-			var_dump("---");
+			// var_dump("---");
 			// var_dump($ss_address_object);
 			var_dump("------");
 
