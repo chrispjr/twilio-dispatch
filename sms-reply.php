@@ -30,15 +30,15 @@ function send_validation_response($ss_results) {
 
 			$response += "$i: $street\n $city\n";
 
-			$i++;
+			$i+;
 
 		}
 
 		// build_confirm_message($addresses);
 
-		// var_dump($ss_results);
+		var_dump($ss_results);
 
-		var_dump($response);
+		// var_dump($response);
 
 	}
 
