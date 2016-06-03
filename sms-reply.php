@@ -130,11 +130,11 @@ function build_confirm_message($addresses) {
 
 		// var_dump($address);
 
-		$street = $address['delivery_line_1'][1];
+		$street = $address['delivery_line_1'][0];
 
-		$city = $address['last_line'][1];
+		$city = $address['last_line'][0];
 		
-		$response .= "Reply \"$i\" to select:\n";
+		$response .= "Reply \"$i\" to select\n";
 
 		$response .= "$i: $street $city\n";
 
