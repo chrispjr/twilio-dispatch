@@ -10,7 +10,7 @@ function send_validation_response($ss_results) {
 	// 	echo "Please confirm that your pickup address is:\n $street\n $city";
 	// }
 	
-	$i = 1;
+	$i = 0;
 
 	foreach ($ss_results as $ss_result) {
 
@@ -24,7 +24,7 @@ function send_validation_response($ss_results) {
 
 	}
 
-	echo build_confirm_message($addresses);
+	build_confirm_message($addresses);
 }
 
 function build_confirm_message($addresses) {
@@ -43,7 +43,7 @@ function build_confirm_message($addresses) {
 
 	}
 
-	return $response;
+	echo $response;
 
 }
 
