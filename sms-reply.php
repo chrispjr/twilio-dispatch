@@ -22,15 +22,15 @@ function send_validation_response($ss_results) {
 
 		foreach ($ss_results as $ss_result => $value) {
 
-			var_dump($value);
+			// var_dump($value);
 
-			$street = $ss_result['delivery_line_1'];
+			$street = $value['delivery_line_1'];
 
-			$city = $ss_result['last_line'];
+			$city = $value['last_line'];
 
 			// $response += "$i: $street\n $city\n";
 
-			// echo "$street $city";
+			echo "$street $city";
 
 			// $i+;
 
