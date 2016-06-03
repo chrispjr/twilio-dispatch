@@ -24,11 +24,17 @@ function send_validation_response($ss_results) {
 
 			// var_dump($ss_result);
 			
-			var_dump($ss_address_object->delivery_line_1);
+			// var_dump($ss_address_object->delivery_line_1);
 
-			var_dump($ss_address_object->last_line);
+			// var_dump($ss_address_object->last_line);
 
-			echo "\n";
+			$address[$i]->street = $ss_address_object->delivery_line_1;
+
+			$address[$i]->city = $ss_address_object->last_line;
+
+			var_dump($address);
+
+			// echo "\n";
 
 			// $street = $ss_address_object->delivery_line_1;
 
