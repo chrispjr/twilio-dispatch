@@ -14,7 +14,7 @@ function send_validation_response($ss_results) {
 
 	} else {
 
-		$i = 0;
+		$i = 1;
 
 		$addresses = array();
 
