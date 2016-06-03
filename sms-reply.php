@@ -4,11 +4,11 @@ $body = $_REQUEST['Body'];
 
 function send_validation_response($ss_results) {
 	
-	// if (count($ss_results) === 1) {
-	// 	$street = $ss_results[0]->delivery_line_1;
-	// 	$city = $ss_results[0]->last_line;
-	// 	echo "Please confirm that your pickup address is:\n $street\n $city";
-	// }
+	if (count($ss_results) === 1) {
+		$street = $ss_results[0]->delivery_line_1;
+		$city = $ss_results[0]->last_line;
+		echo "Please confirm that your pickup address is:\n $street\n $city";
+	}
 	
 	$i = 0;
 
@@ -103,7 +103,7 @@ function debug($request, $addresses) {
 	        	// $ss_query = http_build_query($ss);
 	        	// $url = "https://api.smartystreets.com/street-address?$ss_query";
 	        	// $url = "https://api.smartystreets.com/street-address?auth-id=f0630cb2-1a6e-a4c9-df41-2d1192123666&auth-token=eRQJMxOomkO0ksHbLPNS&street=".$street."&city=".$city."&state=".$state;
-	        	$url = "https://api.smartystreets.com/street-address?auth-id=f0630cb2-1a6e-a4c9-df41-2d1192123666&auth-token=eRQJMxOomkO0ksHbLPNS&street=$street&city=$city&state=$state";
+	        	$url = "https://api.smartystreets.com/street-address?auth-id=f0630cb2-1a6e-a4c9-df41-2d1192123666&auth-token=eRQJMxOomkO0ksHbLPNS&street=$street&city=$city&state=$state&candidates=10";
 	        	$ch = curl_init();
 	        	$ss_options = array(
 	        		CURLOPT_URL => $url,
