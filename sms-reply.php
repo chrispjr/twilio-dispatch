@@ -116,7 +116,7 @@ function build_confirm_message($addresses) {
 
 	// var_dump($addresses);
 
-	$response = "We found more than one address matching the information you supplied.";
+	$response = "We found more than one address matching the information you supplied.\n";
 
 	$i = 1;
 
@@ -125,10 +125,14 @@ function build_confirm_message($addresses) {
 		// foreach ($address as $key => $value) {
 		// 	echo "$key => $value";
 		// }
+
+		$street = $address['delivery_line_1'];
+
+		$city = $address['last_line'];
 		
 		$response .= "Reply \"$i\" to select:\n";
 
-		$response .= "$i: $address\n";
+		$response .= "$i: $street $city\n";
 
 		$i++;
 
