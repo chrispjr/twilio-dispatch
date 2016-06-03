@@ -22,7 +22,7 @@ function send_validation_response($ss_results) {
 
 		foreach ($ss_results as $ss_result => $ss_address_object) {
 
-			// var_dump($value->delivery_line_1);
+			var_dump($ss_address_object);
 
 			$street = $ss_address_object->delivery_line_1;
 
@@ -40,7 +40,7 @@ function send_validation_response($ss_results) {
 
 		// var_dump($ss_results);
 
-		var_dump($response);
+		// var_dump($response);
 
 	}
 
