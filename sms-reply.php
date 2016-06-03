@@ -34,7 +34,7 @@ function send_validation_response($ss_results) {
 
 		// build_confirm_message($addresses);
 
-		var_dump($response);
+		var_dump($ss_results);
 
 	}
 
