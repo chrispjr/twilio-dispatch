@@ -122,17 +122,17 @@ function build_confirm_message($addresses) {
 
 	foreach ($addresses as $address) {
 
-		var_dump($address);
+		// var_dump($address);
 
 		foreach ($address as $key) {
-			var_dump("$key");
+			// var_dump("$key");
 		}
 
 		// var_dump($address);
 
-		$street = $address['delivery_line_1'];
+		$street = $address['delivery_line_1'][1];
 
-		$city = $address['last_line'];
+		$city = $address['last_line'][1];
 		
 		$response .= "Reply \"$i\" to select:\n";
 
@@ -142,7 +142,7 @@ function build_confirm_message($addresses) {
 
 	}
 
-	// echo $response;
+	echo $response;
 
 	// var_dump($response);
 
