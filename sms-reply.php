@@ -41,11 +41,11 @@ function send_validation_response($ss_results) {
 
 			// var_dump($ss_address_object->last_line);
 
-			// $address[$i]['candidate_index'] = $ss_address_object->candidate_index;
+			$address[$i]['candidate_index'] = $ss_result->candidate_index;
 
-			// $address[$i]['street'] = $ss_address_object->delivery_line_1;
+			$address[$i]['street'] = $ss_result->delivery_line_1;
 
-			// $address[$i]['city'] = $ss_address_object->last_line;
+			$address[$i]['city'] = $ss_result->last_line;
 
 			// echo "\n";
 
@@ -57,7 +57,7 @@ function send_validation_response($ss_results) {
 
 			// echo "$street $city";
 
-			// $i+;
+			$i++;
 
 		}
 
