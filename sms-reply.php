@@ -114,7 +114,7 @@ function send_validation_response($ss_results) {
 
 function build_confirm_message($addresses) {
 
-	$response = "We found more than one address matching the information you supplied.\n";
+	$response = "We found more than one address matching the information you supplied.";
 
 	$i = 1;
 
