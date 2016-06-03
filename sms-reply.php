@@ -72,7 +72,7 @@ function build_confirm_message($addresses) {
 	foreach ($addresses as $address) {
 
 		foreach ($address as $key => $value) {
-			echo "$key => $value";
+			$response += "$key => $value\n";
 		}
 		
 		// $response += "Reply \"$i\" to select:\n";
@@ -83,9 +83,9 @@ function build_confirm_message($addresses) {
 
 	}
 
-	// echo $response;
+	echo $response;
 
-	var_dump($response);
+	// var_dump($response);
 
 }
 
