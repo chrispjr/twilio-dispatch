@@ -114,25 +114,23 @@ function send_validation_response($ss_results) {
 
 function build_confirm_message($addresses) {
 
-	$response = "We found more than one address matching the information you supplied.";
-
-	// $response += "Next";
+	$response = "We found more than one address matching the information you supplied.\n";
 
 	$i = 1;
 
-	// foreach ($addresses as $address) {
+	foreach ($addresses as $address) {
 
-	// 	// foreach ($address as $key => $value) {
-	// 	// 	echo "$key => $value";
-	// 	// }
+		// foreach ($address as $key => $value) {
+		// 	echo "$key => $value";
+		// }
 		
-	// 	$response += "Reply \"$i\" to select:\n";
+		$response .= "Reply \"$i\" to select:\n";
 
-	// 	$response += "$i: $address\n";
+		$response .= "$i: $address\n";
 
-	// 	$i++;
+		$i++;
 
-	// }
+	}
 
 	echo $response;
 
