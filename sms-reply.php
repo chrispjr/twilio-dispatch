@@ -85,7 +85,7 @@ function build_confirm_message($addresses) {
 
 }
 
-function ss_validate_address($_REQUEST) {
+function ss_validate_address() {
 	$street = $_REQUEST['Body'];
 	$street = urlencode($street);
 	$city = $_REQUEST['FromCity'];
@@ -180,7 +180,7 @@ function ss_validate_address($_REQUEST) {
 	        	// curl_close($ch);
 	        	// $ss_results = json_decode($ss_results);
 	        	// // var_dump($ss_results);
-	        	$ss_response = ss_validate_address($_REQUEST);
+	        	$ss_response = ss_validate_address();
 	        	send_validation_response($ss_response);
 	        	?>
 	        </Message>
