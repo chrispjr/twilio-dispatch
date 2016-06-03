@@ -132,7 +132,7 @@ function build_confirm_message($addresses) {
 
 		// var_dump($address);
 
-		var_dump($address['delivery_line_1']);
+		var_dump($address[0]);
 
 		$street = $address['delivery_line_1'][0];
 
