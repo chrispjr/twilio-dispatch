@@ -22,8 +22,10 @@ function send_validation_response($ss_results) {
 
 		foreach ($ss_results as $ss_result => $ss_address_object) {
 
-			// var_dump($ss_address_object);
-			// var_dump("---------");
+			var_dump($ss_result);
+			var_dump("---");
+			var_dump($ss_address_object);
+			var_dump("------");
 
 			foreach ($ss_address_object as $key) {
 				$address[$i]['candidate_index'] = $key->candidate_index;
@@ -39,11 +41,11 @@ function send_validation_response($ss_results) {
 
 			// var_dump($ss_address_object->last_line);
 
-			$address[$i]['candidate_index'] = $ss_address_object->candidate_index;
+			// $address[$i]['candidate_index'] = $ss_address_object->candidate_index;
 
-			$address[$i]['street'] = $ss_address_object->delivery_line_1;
+			// $address[$i]['street'] = $ss_address_object->delivery_line_1;
 
-			$address[$i]['city'] = $ss_address_object->last_line;
+			// $address[$i]['city'] = $ss_address_object->last_line;
 
 			// echo "\n";
 
