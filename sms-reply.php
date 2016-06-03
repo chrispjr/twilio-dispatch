@@ -30,7 +30,7 @@ function send_validation_response($ss_results) {
 
 			$response += "$i: $street\n $city\n";
 
-			$i+;
+			// $i+;
 
 		}
 
