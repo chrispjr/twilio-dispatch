@@ -53,7 +53,7 @@ function send_validation_response($ss_results) {
 		// var_dump($address);
 		// var_dump($ss_results);
 
-		build_confirm_message($address);
+		build_confirm_message($addresses);
 
 		// var_dump($ss_results);
 
@@ -72,7 +72,7 @@ function build_confirm_message($addresses) {
 	foreach ($addresses as $address) {
 
 		foreach ($address as $key => $value) {
-			$response += "$key => $value\n";
+			echo "$key => $value";
 		}
 		
 		// $response += "Reply \"$i\" to select:\n";
