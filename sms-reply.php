@@ -22,7 +22,9 @@ function send_validation_response($ss_results) {
 
 		foreach ($ss_results as $ss_result => $ss_address_object) {
 
-			var_dump($ss_address_object);
+			// var_dump($ss_address_object);
+
+			var_dump($ss_results);
 			
 			// var_dump($ss_address_object->delivery_line_1);
 
