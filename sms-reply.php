@@ -102,7 +102,7 @@ function send_validation_response($ss_results) {
 		// var_dump($address);
 		// var_dump($ss_results);
 
-		build_confirm_message($addresses);
+		build_confirm_message($address);
 
 		// var_dump($ss_results);
 
