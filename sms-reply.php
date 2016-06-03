@@ -132,6 +132,8 @@ function build_confirm_message($addresses) {
 
 		// var_dump($address);
 
+		var_dump($address['delivery_line_1']);
+
 		$street = $address['delivery_line_1'][0];
 
 		$city = $address['last_line'][0];
@@ -144,7 +146,7 @@ function build_confirm_message($addresses) {
 
 	}
 
-	echo $response;
+	// echo $response;
 
 	// var_dump($response);
 
