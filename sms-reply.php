@@ -28,7 +28,7 @@ function send_validation_response($ss_results) {
 
 			$city = $ss_address_object->last_line;
 
-			$response += "$i: $street\n $city\n";
+			// $response += "$i: $street\n $city\n";
 
 			// echo "$street $city";
 
