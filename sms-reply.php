@@ -26,6 +26,8 @@ function send_validation_response($ss_results) {
 			// echo "\n";
 			var_dump($ss_address_object->delivery_line_1);
 
+			var_dump($ss_address_object->last_line);
+
 			// $street = $ss_address_object->delivery_line_1;
 
 			// $city = $ss_address_object->last_line;
