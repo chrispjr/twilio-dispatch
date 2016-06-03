@@ -43,7 +43,9 @@ function build_confirm_message($addresses) {
 
 	}
 
-	echo $response;
+	// echo $response;
+
+	var_dump($response);
 
 }
 
