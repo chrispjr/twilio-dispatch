@@ -20,9 +20,9 @@ function send_validation_response($ss_results) {
 
 		$response = "";
 
-		foreach ($ss_results as $ss_result =>) {
+		foreach ($ss_results as $ss_result => $value) {
 
-			var_dump($ss_result);
+			var_dump($value);
 
 			$street = $ss_result['delivery_line_1'];
 
