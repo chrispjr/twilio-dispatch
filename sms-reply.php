@@ -116,7 +116,7 @@ function build_confirm_message($addresses) {
 
 	$response = "We found more than one address matching the information you supplied.";
 
-	$response += "Next";
+	// $response += "Next";
 
 	$i = 1;
 
