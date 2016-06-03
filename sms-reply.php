@@ -22,8 +22,16 @@ function send_validation_response($ss_results) {
 
 		foreach ($ss_results as $ss_result => $ss_address_object) {
 
-			var_dump($ss_address_object);
-			var_dump("---------");
+			// var_dump($ss_address_object);
+			// var_dump("---------");
+
+			foreach ($ss_address_object as $key) {
+				$address[$i]['candidate_index'] = $key->candidate_index;
+
+				$address[$i]['street'] = $key->delivery_line_1;
+
+				$address[$i]['city'] = $key->last_line;
+			}
 
 
 			
