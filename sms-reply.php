@@ -20,45 +20,7 @@ function send_validation_response($ss_results) {
 
 		$response = "";
 
-		// foreach ($ss_results as $ss_result => $ss_address_object) {
-
-		// 	// var_dump($ss_address_object);
-
-
-			
-		// 	// var_dump($ss_address_object->delivery_line_1);
-
-		// 	// var_dump($ss_address_object->last_line);
-
-		// 	$address[$i]['candidate_index'] = $ss_address_object->candidate_index;
-
-		// 	$address[$i]['street'] = $ss_address_object->delivery_line_1;
-
-		// 	$address[$i]['city'] = $ss_address_object->last_line;
-
-		// 	// echo "\n";
-
-		// 	// $street = $ss_address_object->delivery_line_1;
-
-		// 	// $city = $ss_address_object->last_line;
-
-		// 	// $response += "$i: $street\n $city\n";
-
-		// 	// echo "$street $city";
-
-		// 	// $i+;
-
-		// }
-
-		foreach ($ss_results as $ss_result) {
-
-			$output = "";
-
-			echo $ss_result;
-
-			foreach ($ss_result as $key) {
-				echo $key;
-			}
+		foreach ($ss_results as $ss_result => $ss_address_object) {
 
 			// var_dump($ss_address_object);
 
@@ -68,11 +30,11 @@ function send_validation_response($ss_results) {
 
 			// var_dump($ss_address_object->last_line);
 
-			// $address[$i]['candidate_index'] = $ss_address_object->candidate_index;
+			$address[$i]['candidate_index'] = $ss_address_object->candidate_index;
 
-			// $address[$i]['street'] = $ss_address_object->delivery_line_1;
+			$address[$i]['street'] = $ss_address_object->delivery_line_1;
 
-			// $address[$i]['city'] = $ss_address_object->last_line;
+			$address[$i]['city'] = $ss_address_object->last_line;
 
 			// echo "\n";
 
@@ -88,7 +50,45 @@ function send_validation_response($ss_results) {
 
 		}
 
-		// var_dump($output);
+		// foreach ($ss_results as $ss_result) {
+
+		// 	$output = "";
+
+		// 	$output =+ $ss_result;
+
+		// 	foreach ($ss_result as $key) {
+		// 		echo $key;
+		// 	}
+
+		// 	// var_dump($ss_address_object);
+
+
+			
+		// 	// var_dump($ss_address_object->delivery_line_1);
+
+		// 	// var_dump($ss_address_object->last_line);
+
+		// 	// $address[$i]['candidate_index'] = $ss_address_object->candidate_index;
+
+		// 	// $address[$i]['street'] = $ss_address_object->delivery_line_1;
+
+		// 	// $address[$i]['city'] = $ss_address_object->last_line;
+
+		// 	// echo "\n";
+
+		// 	// $street = $ss_address_object->delivery_line_1;
+
+		// 	// $city = $ss_address_object->last_line;
+
+		// 	// $response += "$i: $street\n $city\n";
+
+		// 	// echo "$street $city";
+
+		// 	// $i+;
+
+		// }
+
+		var_dump($address);
 		// var_dump($ss_results);
 
 		// build_confirm_message($addresses);
