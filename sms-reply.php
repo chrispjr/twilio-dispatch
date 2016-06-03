@@ -20,19 +20,19 @@ function send_validation_response($ss_results) {
 
 		$response = "";
 
-		foreach ($ss_results as $ss_result => $value) {
+		foreach ($ss_results as $ss_result => $ss_address_object) {
 
-			var_dump($value->delivery_line_1);
+			// var_dump($value->delivery_line_1);
 
-			$street = $ss_result['delivery_line_1'];
+			$street = $ss_address_object['delivery_line_1'];
 
-			$city = $ss_result['last_line'];
+			$city = $ss_address_object['last_line'];
 
-			// $response += "$i: $street\n $city\n";
+			$response += "$i: $street\n $city\n";
 
 			// echo "$street $city";
 
-			// $i+;
+			$i+;
 
 		}
 
@@ -40,7 +40,7 @@ function send_validation_response($ss_results) {
 
 		// var_dump($ss_results);
 
-		// var_dump($response);
+		var_dump($response);
 
 	}
 
