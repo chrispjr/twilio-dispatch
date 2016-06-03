@@ -54,8 +54,8 @@ function send_validation_response($ss_results) {
 
 			$output = "";
 
-			foreach ($ss_result as $key => $value) {
-				$output += "$key => $value";
+			foreach ($ss_result as $key) {
+				$output += "$key";
 			}
 
 			// var_dump($ss_address_object);
