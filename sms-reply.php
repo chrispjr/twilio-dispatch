@@ -3,11 +3,46 @@
 $body = $_REQUEST['Body'];
 
 function send_validation_response($ss_results) {
-	if (count($ss_results) === 1) {
-		$street = $ss_results[0]->delivery_line_1;
-		$city = $ss_results[0]->last_line;
-		echo "Please confirm that your pickup address is:\n $street\n $city";
+	
+	// if (count($ss_results) === 1) {
+	// 	$street = $ss_results[0]->delivery_line_1;
+	// 	$city = $ss_results[0]->last_line;
+	// 	echo "Please confirm that your pickup address is:\n $street\n $city";
+	// }
+	
+	$i = 1;
+
+	foreach ($ss_results as $ss_result) {
+
+		$street = $ss_result->delivery_line_1;
+
+		$city = $ss_result->last_line;
+
+		$addresses[$i] = "$street\n $city";
+
+		$i++;
+
 	}
+
+	echo build_confirm_message($addresses);
+}
+
+function build_confirm_message($addresses) {
+
+	$response = "We found more than one address matching the information you supplied.\n";
+
+	$i = 1;
+
+	foreach ($addresses as $address) {
+		
+		$response += "Reply \"$i\" to select:\n";
+
+		$response += "$i: $address\n";
+
+	}
+
+	return $response;
+
 }
 
 	if ($body == "pickup") {
@@ -15,7 +50,7 @@ function send_validation_response($ss_results) {
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 	    ?>
 		<Response>
-		    <Message>What's your address?</Message>
+		    <Message>What's your address? No city or state, please. Example: 1500 W Baltimore St</Message>
 		</Response>
     <?php } elseif($body == "debug") {
 		header("content-type: text/xml");
