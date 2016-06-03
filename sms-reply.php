@@ -24,9 +24,9 @@ function send_validation_response($ss_results) {
 
 			var_dump($ss_result);
 
-			$street = $ss_result->delivery_line_1;
+			$street = $ss_result['delivery_line_1'];
 
-			$city = $ss_result->last_line;
+			$city = $ss_result['last_line'];
 
 			$response += "$i: $street\n $city\n";
 
@@ -37,6 +37,8 @@ function send_validation_response($ss_results) {
 		// build_confirm_message($addresses);
 
 		// var_dump($ss_results);
+
+		var_dump($response);
 
 	}
 
