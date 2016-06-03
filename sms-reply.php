@@ -122,11 +122,11 @@ function build_confirm_message($addresses) {
 
 	foreach ($addresses as $address) {
 
-		// foreach ($address as $key => $value) {
-		// 	echo "$key => $value";
-		// }
+		foreach ($address as $key => $value) {
+			var_dump("$key => $value");
+		}
 
-		var_dump($address);
+		// var_dump($address);
 
 		$street = $address['delivery_line_1'];
 
