@@ -28,6 +28,8 @@ function send_validation_response($ss_results) {
 
 			// var_dump($ss_address_object->last_line);
 
+			$address[$i]['candidate_index'] = $ss_address_object->candidate_index;
+
 			$address[$i]['street'] = $ss_address_object->delivery_line_1;
 
 			$address[$i]['city'] = $ss_address_object->last_line;
