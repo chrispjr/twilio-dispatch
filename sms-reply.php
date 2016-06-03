@@ -22,7 +22,7 @@ function send_validation_response($ss_results) {
 
 		foreach ($ss_results as $ss_result) {
 
-			echo "ss_result".$ss_result);
+			echo "ss_result".$ss_result;
 
 			$street = $ss_result['delivery_line_1'];
 
