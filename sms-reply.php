@@ -114,8 +114,8 @@ function debug($request, $addresses) {
 	        	$ss_results = curl_exec($ch);
 	        	curl_close($ch);
 	        	$ss_results = json_decode($ss_results);
-	        	var_dump($ss_results);
-	        	// send_validation_response($ss_results);
+	        	// var_dump($ss_results);
+	        	send_validation_response($ss_results);
 	        	?>
 	        </Message>
 	    </Response>
