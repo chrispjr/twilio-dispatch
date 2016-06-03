@@ -48,7 +48,6 @@ function build_confirm_message($addresses) {
 }
 
 function debug($request, $addresses) {
-	
 
 	$response = "Debug output:\n";
 
@@ -59,6 +58,15 @@ function debug($request, $addresses) {
 		$response += var_dump($request);
 
 	}
+
+	if (!empty($addresses)) {
+		
+		$response += "var_dump(\$addresses):\n";
+
+		$response += var_dump($addresses);
+
+	}
+
 }
 
 	if ($body == "pickup") {
@@ -106,8 +114,8 @@ function debug($request, $addresses) {
 	        	$ss_results = curl_exec($ch);
 	        	curl_close($ch);
 	        	$ss_results = json_decode($ss_results);
-	        	// var_dump($ss_results);
-	        	send_validation_response($ss_results);
+	        	var_dump($ss_results);
+	        	// send_validation_response($ss_results);
 	        	?>
 	        </Message>
 	    </Response>
