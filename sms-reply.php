@@ -54,6 +54,8 @@ function send_validation_response($ss_results) {
 
 			$output = "";
 
+			echo $ss_result;
+
 			foreach ($ss_result as $key) {
 				echo $key;
 			}
