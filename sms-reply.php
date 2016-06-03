@@ -8,23 +8,26 @@ function send_validation_response($ss_results) {
 		$street = $ss_results[0]->delivery_line_1;
 		$city = $ss_results[0]->last_line;
 		echo "Please confirm that your pickup address is:\n $street\n $city";
+	} else {
+
+		$i = 0;
+
+		foreach ($ss_results as $ss_result) {
+
+			$street = $ss_result->delivery_line_1;
+
+			$city = $ss_result->last_line;
+
+			$addresses[$i] = "$street\n $city";
+
+			$i++;
+
+		}
+
+		build_confirm_message($addresses);
+
 	}
-	
-	$i = 0;
 
-	foreach ($ss_results as $ss_result) {
-
-		$street = $ss_result->delivery_line_1;
-
-		$city = $ss_result->last_line;
-
-		$addresses[$i] = "$street\n $city";
-
-		$i++;
-
-	}
-
-	build_confirm_message($addresses);
 }
 
 function build_confirm_message($addresses) {
