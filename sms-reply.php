@@ -201,12 +201,45 @@ function ss_validate_address() {
 
 // }
 
+
+
+
+function pickup_conversation() {
+
+	$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
+	$prompt_2 = "Please confirm that your pickup address is:\n $street\n $city";
+	$prompt_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
+
+	if (!isset($_COOKIE["prompt_1"])) {
+		
+		$TwiMLResponse = $prompt_1;
+
+		setcookie("initiation", $_REQUEST["Body"]);
+		setcookie("prompt_1", "nil");
+		setcookie("prompt_2", "nil");
+		setcookie("prompt_3", "nil");
+
+	}
+
+	elseif ($_COOKIE["prompt_1"] == "nil") {
+
+		setcookie("prompt_1", $_REQUEST["Body"]);
+
+		$TwiMLResponse = $prompt_2;
+
+	}
+
+	return $TwiMLResponse;
+
+}
+
 	if ($body == "pickup") {
+		$TwiMLResponse = pickup_conversation();
 		header("content-type: text/xml");
 	    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 	    ?>
 		<Response>
-		    <Message>What's your address? No city or state, please. Example: 1500 W Baltimore St</Message>
+		    <Message><?php echo $TwiMLResponse; ?></Message>
 		</Response>
     <?php } elseif($body == "debug") {
 		header("content-type: text/xml");
