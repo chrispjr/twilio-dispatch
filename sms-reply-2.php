@@ -19,119 +19,119 @@
 // 	return $ss_results;
 // }
 
-// function pickup_conversation() {
+function pickup_conversation() {
 
-// 	$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
+	$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
 
-// 	// $prompt_2a = "Please reply \"Yes\" or \"No\". Is the address where you would like to be picked up? \n $street\n $city";
+	// $prompt_2a = "Please reply \"Yes\" or \"No\". Is the address where you would like to be picked up? \n $street\n $city";
 
-// 	// $prompt_2b = build_confirm_message();
+	// $prompt_2b = build_confirm_message();
 
-// 	// $prompt_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
+	// $prompt_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
 
-// 	if (!isset($_COOKIE["prompt_1"])) {
+	if (!isset($_COOKIE["prompt_1"])) {
 		
-// 		$TwiMLResponse = $prompt_1;
+		$TwiMLResponse = $prompt_1;
 
-// 		setcookie("initiation", $_REQUEST["Body"]);
-// 		setcookie("prompt_1", "nil");
-// 		setcookie("prompt_2", "nil");
-// 		setcookie("prompt_3", "nil");
+		setcookie("initiation", $_REQUEST["Body"]);
+		setcookie("prompt_1", "nil");
+		setcookie("prompt_2", "nil");
+		setcookie("prompt_3", "nil");
 
-// 	}
+	}
 
-// 	elseif ($_COOKIE["prompt_1"] == "nil") {
+	elseif ($_COOKIE["prompt_1"] == "nil") {
 
-// 		// Prompt: Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St
+		// Prompt: Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St
 
-// 		// what was the question we asked?
+		// what was the question we asked?
 
-// 		$previousTwiMLResponse = $_COOKIE['initiation'];
+		$previousTwiMLResponse = $_COOKIE['initiation'];
 
-// 		// what was the userResponse?
+		// what was the userResponse?
 
-// 		$userResponse = $_REQUEST["Body"];
+		$userResponse = $_REQUEST["Body"];
 
-// 		setcookie("prompt_1", $userResponse);
+		setcookie("prompt_1", $userResponse);
 
-// 		// what are the expected responses?
+		// what are the expected responses?
 
-// 		$expectedResponse = '/^[a-z0-9- ]+$/i';
+		$expectedResponse = '/^[a-z0-9- ]+$/i';
 
-// 		// was the userResponse an expected user response (an address in this case)?
+		// was the userResponse an expected user response (an address in this case)?
 
-// 		$isExpectedResponse = preg_match($expectedResponse, $userResponse);
+		$isExpectedResponse = preg_match($expectedResponse, $userResponse);
 
-// 		// does it match a (quick, free) regex match? $add_check = ;
+		// does it match a (quick, free) regex match? $add_check = ;
 
-// 		if ($isExpectedResponse) {
+		if ($isExpectedResponse) {
 			
-// 			// if so, proceed to check against the smartystreets API
+			// if so, proceed to check against the smartystreets API
 
-// 			$validatedAddress = ss_validate_address();
+			$validatedAddress = ss_validate_address();
 
-// 			$countValidatedAddress = count($validatedAddress);
+			$countValidatedAddress = count($validatedAddress);
 
-// 			if ($countValidatedAddress === 0) {
+			if ($countValidatedAddress === 0) {
 				
-// 				setcookie("prompt_1", "nil");
+				setcookie("prompt_1", "nil");
 
-// 				$TwiMLResponse = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
+				$TwiMLResponse = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
 
-// 			} elseif ($countValidatedAddress === 1) {
+			} elseif ($countValidatedAddress === 1) {
 
-// 				$street = $validatedAddress[0]->delivery_line_1;
+				$street = $validatedAddress[0]->delivery_line_1;
 
-// 				$city = $validatedAddress[0]->last_line;
+				$city = $validatedAddress[0]->last_line;
 
-// 				$TwiMLResponse = "Please confirm that your pickup address is:\n $street\n $city";
+				$TwiMLResponse = "Please confirm that your pickup address is:\n $street\n $city";
 
-// 			} elseif($countValidatedAddress > 1) {
+			} elseif($countValidatedAddress > 1) {
 
-// 				$TwiMLResponse = "We found more than one address matching the information you supplied.\n";
+				$TwiMLResponse = "We found more than one address matching the information you supplied.\n";
 
-// 					$i = 1;
+					$i = 1;
 
-// 					foreach ($addresses as $address) {
+					foreach ($addresses as $address) {
 
-// 						var_dump("---ADD--");
-// 						var_dump($address);
+						var_dump("---ADD--");
+						var_dump($address);
 
 
-// 						foreach ($address as $key) {
-// 							// var_dump("$key");
-// 						}
+						foreach ($address as $key) {
+							// var_dump("$key");
+						}
 
-// 						// var_dump($address);
+						// var_dump($address);
 
-// 						var_dump($address[0]);
+						var_dump($address[0]);
 
-// 						$street = $address['delivery_line_1'][0];
+						$street = $address['delivery_line_1'][0];
 
-// 						$city = $address['last_line'][0];
+						$city = $address['last_line'][0];
 						
-// 						$TwiMLResponse .= "Reply \"$i\" to select\n";
+						$TwiMLResponse .= "Reply \"$i\" to select\n";
 
-// 						$TwiMLResponse .= "$i: $street $city\n";
+						$TwiMLResponse .= "$i: $street $city\n";
 
-// 						$i++;
+						$i++;
 
-// 					}
+					}
 
-// 		} else {
+		} else {
 
-// 			// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
+			// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
 
-// 			$TwiMLResponse = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
+			$TwiMLResponse = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
 
-// 		}
+		}
 
 
-// 	}
+	}
 
-// 	// return $TwiMLResponse;
+	// return $TwiMLResponse;
 
-// }
+}
 
 header("content-type: text/xml");
 
@@ -141,5 +141,5 @@ $TwiMLResponse = "pickup_conversation";
 
 ?>
 <Response>
-    <Message><?php echo $TwiMLResponse; ?></Message>
+    <Message><?php var_dump(pickup_conversation()); ?></Message>
 </Response>
