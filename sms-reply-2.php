@@ -121,20 +121,19 @@ function pickup_conversation() {
 
 					}
 
-		} else {
+			} else {
 
-			// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
+				// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
 
-			$TwiMLResponse = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
+				$TwiMLResponse = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
+
+			}
 
 		}
-
 
 	}
 
 	return $TwiMLResponse;
-
-	}
 
 }
 
