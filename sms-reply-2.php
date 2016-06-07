@@ -1,27 +1,26 @@
 <?php
 
-// function ss_validate_address() {
-// 	$street = $_REQUEST['Body'];
-// 	$street = urlencode($street);
-// 	$city = $_REQUEST['FromCity'];
-// 	$state = $_REQUEST['FromState'];
-// 	$url = "https://api.smartystreets.com/street-address?auth-id=f0630cb2-1a6e-a4c9-df41-2d1192123666&auth-token=eRQJMxOomkO0ksHbLPNS&street=$street&city=$city&state=$state&candidates=10";
-// 	$ch = curl_init();
-// 	$ss_options = array(
-// 		CURLOPT_URL => $url,
-// 		CURLOPT_POST => false,
-// 		CURLOPT_RETURNTRANSFER => true
-// 	);
-// 	curl_setopt_array($ch, $ss_options);
-// 	$ss_results = curl_exec($ch);
-// 	curl_close($ch);
-// 	$ss_results = json_decode($ss_results);
-// 	return $ss_results;
-// }
-
-
 header("content-type: text/xml");
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+
+function ss_validate_address() {
+	$street = $_REQUEST['Body'];
+	$street = urlencode($street);
+	$city = $_REQUEST['FromCity'];
+	$state = $_REQUEST['FromState'];
+	$url = "https://api.smartystreets.com/street-address?auth-id=f0630cb2-1a6e-a4c9-df41-2d1192123666&auth-token=eRQJMxOomkO0ksHbLPNS&street=$street&city=$city&state=$state&candidates=10";
+	$ch = curl_init();
+	$ss_options = array(
+		CURLOPT_URL => $url,
+		CURLOPT_POST => false,
+		CURLOPT_RETURNTRANSFER => true
+	);
+	curl_setopt_array($ch, $ss_options);
+	$ss_results = curl_exec($ch);
+	curl_close($ch);
+	$ss_results = json_decode($ss_results);
+	return $ss_results;
+}
 
 function pickup_conversation() {
 
