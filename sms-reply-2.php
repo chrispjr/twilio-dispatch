@@ -142,5 +142,5 @@ function pickup_conversation() {
 
 ?>
 <Response>
-    <Message><?php var_dump(pickup_conversation()); ?></Message>
+    <Message><?php pickup_conversation(); ?></Message>
 </Response>
