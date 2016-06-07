@@ -139,6 +139,8 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
 $TwiMLResponse = "pickup_conversation";
 
+}
+
 ?>
 <Response>
     <Message><?php var_dump(pickup_conversation()); ?></Message>
