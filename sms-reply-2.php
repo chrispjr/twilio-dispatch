@@ -1,6 +1,5 @@
 <?php
 
-
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
 	$street = urlencode($street);
@@ -138,7 +137,7 @@ function pickup_conversation() {
 
 	}
 
-	return $TwiMLResponse;
+	// return $TwiMLResponse;
 
 }
 
