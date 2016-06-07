@@ -152,4 +152,3 @@ $TwiMLResponse = "pickup_conversation()";
 <Response>
     <Message><?php echo $TwiMLResponse; ?></Message>
 </Response>
-<?php } ?>
