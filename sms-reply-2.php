@@ -132,13 +132,13 @@ function pickup_conversation() {
 
 	}
 
-	return $prompt_1;
+	return $TwiMLResponse;
+
+	}
 
 }
 
 $TwiMLResponse = pickup_conversation();
-
-}
 
 ?>
 <Response>
