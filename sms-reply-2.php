@@ -136,11 +136,11 @@ function pickup_conversation() {
 
 }
 
-// $TwiMLResponse = "pickup_conversation";
+$TwiMLResponse = pickup_conversation();
 
 }
 
 ?>
 <Response>
-    <Message><?php pickup_conversation(); ?></Message>
+    <Message><?php echo $TwiMLResponse; ?></Message>
 </Response>
