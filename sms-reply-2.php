@@ -19,6 +19,10 @@
 // 	return $ss_results;
 // }
 
+
+header("content-type: text/xml");
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+
 function pickup_conversation() {
 
 	$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
@@ -129,15 +133,11 @@ function pickup_conversation() {
 
 	}
 
-	// return $TwiMLResponse;
+	return $TwiMLResponse;
 
 }
 
-header("content-type: text/xml");
-
-echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-
-$TwiMLResponse = "pickup_conversation";
+// $TwiMLResponse = "pickup_conversation";
 
 }
 
