@@ -132,7 +132,7 @@ function pickup_conversation() {
 
 	}
 
-	return $TwiMLResponse;
+	return $prompt_1;
 
 }
 
