@@ -79,6 +79,10 @@ function pickup_conversation() {
 
 			$validatedAddress = ss_validate_address();
 
+			$serializedValidatedAddress = serialize($validatedAddress);
+
+			setcookie("validatedAddress", $serializedValidatedAddress);
+
 			$countValidatedAddress = count($validatedAddress);
 
 			if ($countValidatedAddress === 0) {
@@ -98,10 +102,6 @@ function pickup_conversation() {
 				$TwiMLResponse = $prompt_3."$street\n $city";
 
 			} elseif($countValidatedAddress > 1) {
-
-				$serializedValidatedAddress = serialize($validatedAddress);
-
-				setcookie("validatedAddress", $serializedValidatedAddress);
 
 				$TwiMLResponse = "We found more than one address matching the information you supplied.\n";
 
@@ -146,7 +146,6 @@ function pickup_conversation() {
 	}
 
 	elseif ($_COOKIE["userResponse_2"] == "nil") {
-
 
 		setcookie("userResponse_2", $userResponse);
 
