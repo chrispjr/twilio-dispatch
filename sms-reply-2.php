@@ -83,6 +83,8 @@ function pickup_conversation() {
 
 			setcookie("validatedAddress", $serializedValidatedAddress);
 
+			var_dump($serializedValidatedAddress);
+
 			$countValidatedAddress = count($validatedAddress);
 
 			if ($countValidatedAddress === 0) {
