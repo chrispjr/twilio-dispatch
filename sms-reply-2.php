@@ -97,7 +97,7 @@ function pickup_conversation() {
 
 					$i = 1;
 
-					foreach ($addresses as $address) {
+					foreach ($validatedAddress as $address) {
 
 						var_dump("---ADD--");
 						var_dump($address);
