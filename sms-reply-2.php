@@ -107,7 +107,7 @@ function pickup_conversation() {
 
 				$TwiMLResponse = "We found more than one address matching the information you supplied.\n";
 
-					$i = 1;
+					$i = 0;
 
 					foreach ($validatedAddress as $address) {
 
@@ -115,13 +115,21 @@ function pickup_conversation() {
 
 						$city = $address->last_line;
 
-						$compiledValidAddress[$i-]['street'] = $street;
+						$compiledValidAddress[$i]['street'] = $street;
 
-						$compiledValidAddress[$i-]['city'] = $city;
+						$compiledValidAddress[$i]['city'] = $city;
+
+						$i++;
+
+					}
+
+					$i=1;
+
+					foreach ($compiledValidAddress as $address) {
 						
 						$TwiMLResponse .= "Reply \"$i\" to select\n";
 
-						$TwiMLResponse .= "$i: $street $city\n";
+						$TwiMLResponse .= "$i: ".$address['street'], $address['city']."\n";
 
 						$i++;
 
