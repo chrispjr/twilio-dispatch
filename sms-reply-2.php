@@ -99,9 +99,9 @@ function pickup_conversation() {
 
 			} elseif($countValidatedAddress > 1) {
 
-				$validatedAddress = serialize($validatedAddress);
+				$serializedValidatedAddress = serialize($validatedAddress);
 
-				setcookie("validatedAddress", $validatedAddress);
+				setcookie("validatedAddress", $serializedValidatedAddress);
 
 				$TwiMLResponse = "We found more than one address matching the information you supplied.\n";
 
