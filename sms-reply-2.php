@@ -99,8 +99,8 @@ function pickup_conversation() {
 
 					foreach ($validatedAddress as $address) {
 
-						var_dump("---ADD--");
-						var_dump($address);
+						// var_dump("---ADD--");
+						// var_dump($address);
 
 
 						foreach ($address as $key) {
@@ -109,7 +109,7 @@ function pickup_conversation() {
 
 						// var_dump($address);
 
-						var_dump($address[0]);
+						// var_dump($address);
 
 						$street = $address['delivery_line_1'][0];
 
