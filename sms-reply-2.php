@@ -4,6 +4,12 @@
 
 $userResponse = $_REQUEST["Body"];
 
+if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
+
+	$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
+
+}
+
 
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
@@ -166,14 +172,7 @@ function pickup_conversation() {
 	}
 
 	elseif ($_COOKIE["userResponse_2"] == "nil") {
-
-		setcookie("userResponse_2", $userResponse);
-
-		if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
-
-			$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
-
-		}
+		
 
 		// what was the previous prompt?
 
@@ -182,6 +181,10 @@ function pickup_conversation() {
 		// what was the userResponse?
 
 		$userResponse = $_REQUEST["Body"];
+
+		setcookie("userResponse_2", $userResponse);
+
+
 
 		// was userResponse an expected response?
 
