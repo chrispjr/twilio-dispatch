@@ -30,7 +30,7 @@ function pickup_conversation() {
 
 	$prompt_3 = "Please confirm that your pickup address is: \n";
 
-	$prompt_unrecognizedInput = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St"''
+	$prompt_unrecognizedInput = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
 
 	// $userResponse_2b = build_confirm_message();
 
