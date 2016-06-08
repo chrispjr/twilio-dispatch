@@ -79,12 +79,6 @@ function pickup_conversation() {
 
 			$validatedAddress = ss_validate_address();
 
-			$serializedValidatedAddress = serialize($validatedAddress);
-
-			setcookie("validatedAddress", $serializedValidatedAddress);
-
-			var_dump($serializedValidatedAddress);
-
 			$countValidatedAddress = count($validatedAddress);
 
 			if ($countValidatedAddress === 0) {
@@ -98,6 +92,12 @@ function pickup_conversation() {
 				$street = $validatedAddress[0]->delivery_line_1;
 
 				$city = $validatedAddress[0]->last_line;
+
+				$compiledValidAddress = array($street, $city);
+
+				$serializedValidatedAddress = serialize($compiledValidAddress);
+
+				setcookie("serializedValidatedAddress", $serializedValidatedAddress);
 
 				// $TwiMLResponse = "Please confirm that your pickup address is:\n $street\n $city";
 
@@ -114,6 +114,10 @@ function pickup_conversation() {
 						$street = $address->delivery_line_1;
 
 						$city = $address->last_line;
+
+						$compiledValidAddress[$i--]['street'] = $street;
+
+						$compiledValidAddress[$i--]['city'] = $city;
 						
 						$TwiMLResponse .= "Reply \"$i\" to select\n";
 
@@ -122,6 +126,10 @@ function pickup_conversation() {
 						$i++;
 
 					}
+
+					$serializedValidatedAddress = serialize($compiledValidAddress);
+
+					setcookie("serializedValidatedAddress", $serializedValidatedAddress);
 
 			} else {
 
