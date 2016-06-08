@@ -111,9 +111,9 @@ function pickup_conversation() {
 
 						// var_dump($address);
 
-						$street = $address['delivery_line_1'][0];
+						$street = $address->delivery_line_1;
 
-						$city = $address['last_line'][0];
+						$city = $address->last_line;
 						
 						$TwiMLResponse .= "Reply \"$i\" to select\n";
 
