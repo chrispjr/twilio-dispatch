@@ -30,6 +30,10 @@ function ss_validate_address() {
 	return $ss_results;
 }
 
+function reset_cookie_to_nil($cookie_name) {
+	setcookie($cookie_name,"nil");
+}
+
 function pickup_conversation() {
 
 	$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
@@ -51,9 +55,9 @@ function pickup_conversation() {
 		$TwiMLResponse = $prompt_1;
 
 		setcookie("initiation", $_REQUEST["Body"]);
-		setcookie("userResponse_1", "nil");
-		setcookie("userResponse_2", "nil");
-		setcookie("userResponse_3", "nil");
+		reset_cookie_to_nil("userResponse_1");
+		reset_cookie_to_nil("userResponse_2");
+		reset_cookie_to_nil("userResponse_3");
 
 	}
 
@@ -91,7 +95,7 @@ function pickup_conversation() {
 
 			if ($countValidatedAddress === 0) {
 				
-				setcookie("userResponse_1", "nil");
+				reset_cookie_to_nil("userResponse_1");
 
 				$TwiMLResponse = $prompt_2;
 
@@ -131,7 +135,7 @@ function pickup_conversation() {
 
 					}
 
-					$i=1;
+					$i = 1;
 
 					foreach ($compiledValidAddress as $address) {
 						
@@ -151,7 +155,7 @@ function pickup_conversation() {
 
 				// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
 
-				setcookie("userResponse_1", "nil");
+				reset_cookie_to_nil("userResponse_1");
 
 				$TwiMLResponse = $prompt_unrecognizedInput;
 
@@ -163,7 +167,7 @@ function pickup_conversation() {
 
 			// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
 
-			setcookie("userResponse_1", "nil");
+			reset_cookie_to_nil("userResponse_1");
 
 			$TwiMLResponse = $prompt_unrecognizedInput;
 
