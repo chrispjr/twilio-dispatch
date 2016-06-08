@@ -2,6 +2,8 @@
 
 //header("content-type: text/xml");
 
+$userResponse = $_REQUEST["Body"];
+
 
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
