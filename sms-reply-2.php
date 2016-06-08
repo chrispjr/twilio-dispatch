@@ -99,7 +99,7 @@ function pickup_conversation() {
 
 			} elseif($countValidatedAddress > 1) {
 
-				$validatedAddress = implode(",", $validatedAddress);
+				$validatedAddress = serialize($validatedAddress);
 
 				setcookie("validatedAddress", $validatedAddress);
 
@@ -152,7 +152,7 @@ function pickup_conversation() {
 
 		if (isset($_COOKIE['validatedAddress']) && !empty($_COOKIE['validatedAddress'])) {
 
-			$validatedAddress = $_COOKIE['validatedAddress'];
+			$validatedAddress = unserialize($_COOKIE['validatedAddress']);
 
 		}
 
