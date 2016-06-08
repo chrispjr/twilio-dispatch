@@ -115,9 +115,9 @@ function pickup_conversation() {
 
 						$city = $address->last_line;
 
-						$compiledValidAddress[$i--]['street'] = $street;
+						$compiledValidAddress[$i-]['street'] = $street;
 
-						$compiledValidAddress[$i--]['city'] = $city;
+						$compiledValidAddress[$i-]['city'] = $city;
 						
 						$TwiMLResponse .= "Reply \"$i\" to select\n";
 
