@@ -1,7 +1,7 @@
 <?php
 
-header("content-type: text/xml");
-echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+//header("content-type: text/xml");
+
 
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
@@ -51,7 +51,7 @@ function pickup_conversation() {
 
 		// what was the question we asked?
 
-		$previousTwiMLResponse = $_COOKIE['initiation'];
+		// $previousTwiMLResponse = $_COOKIE['initiation'];
 
 		// what was the userResponse?
 
