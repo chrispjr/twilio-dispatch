@@ -32,6 +32,8 @@ function pickup_conversation() {
 
 	// $prompt_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
 
+	$TwiMLResponse = "Undefined Response";
+
 	if (!isset($_COOKIE["prompt_1"])) {
 		
 		$TwiMLResponse = $prompt_1;
