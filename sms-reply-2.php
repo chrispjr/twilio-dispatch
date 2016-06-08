@@ -129,7 +129,7 @@ function pickup_conversation() {
 						
 						$TwiMLResponse .= "Reply \"$i\" to select\n";
 
-						$TwiMLResponse .= "$i: ".$address['street'], $address['city']."\n";
+						$TwiMLResponse .= "$i: ".$address['street'].", ".$address['city']."\n";
 
 						$i++;
 
