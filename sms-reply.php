@@ -49,9 +49,9 @@ function dispatchGetToken() {
 
 	$ss_results = json_decode($ss_results);
 
-	// return $ss_results;
+	return $ss_results;
 
-	return $url;
+	// return $url;
 
 }
 
