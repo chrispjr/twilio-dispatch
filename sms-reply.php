@@ -71,8 +71,7 @@ function dispatchGetCustomer($customerNumber) {
 		CURLOPT_URL => $url,
 		CURLOPT_POST => false,
 		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_HEADER => 'Content-Type: application/json',
-		CURLOPT_HEADER => 'Accept: application/json'
+		CURLOPT_HTTPHEADER => array('Content-Type: application/json','Accept: application/json')
 	);
 	curl_setopt_array($ch, $dispatch_options);
 
