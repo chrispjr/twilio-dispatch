@@ -25,7 +25,7 @@ function dispatchGetToken() {
 
 	$query_data_array = array($grant_type,$client_id,$client_secret);
 
-	$query_data = http_build_query($query_data);
+	$query_data = http_build_query($query_data_array);
 
 	$url .= $query_data;
 
