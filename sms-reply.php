@@ -15,7 +15,7 @@ if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serialized
 
 function dispatchGetToken() {
 
-	$url = "https://api-stg.dispatch.me/oauth/token";
+	$url = "https://api-stg.dispatch.me/oauth/token?";
 
 	$grant_type = "client_credentials";
 
