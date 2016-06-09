@@ -5,9 +5,62 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
 $userResponse = $_REQUEST["Body"];
 
+$customerNumber = $_REQUEST['From'];
+
 if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
 
 	$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
+
+}
+
+function dispatchGetToken() {
+
+	$url = "https://api-stg.dispatch.me/oauth/token";
+
+	$grant_type = "client_credentials";
+
+	$client_id = "e458e4297864482bbd7cce0697d33770cbc17e10a19ab5d3a90005e0ee247154";
+
+	$client_secret = "94611d4be20d70eaaca3f1fe6062b7ce135977662acf5e82163a48743226f4c4";
+
+	$ch = curl_init();
+
+	$ss_options = array(
+		CURLOPT_URL => $url,
+		CURLOPT_POST => true,
+		CURLOPT_RETURNTRANSFER => true
+	);
+
+	curl_setopt_array($ch, $ss_options);
+
+	$ss_results = curl_exec($ch);
+
+	curl_close($ch);
+
+	$ss_results = json_decode($ss_results);
+
+	return $ss_results;
+
+}
+
+function dispatchGetCustomer($customerNumber) {
+	
+	
+
+
+
+	$clientID = "";
+
+	
+
+	$dispatch_options = array(
+		CURLOPT_URL => $url,
+		CURLOPT_POST => false,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_HEADER => 'Content-Type: application/json',
+		CURLOPT_HEADER => 'Accept: application/json'
+	);
+	curl_setopt_array($ch, $dispatch_options);
 
 }
 
@@ -189,8 +242,6 @@ function pickup_conversation() {
 
 		setcookie("userResponse_2", $userResponse);
 
-
-
 		// was userResponse an expected response?
 
 		function isExpectedResponse($userResponse) {
@@ -215,7 +266,9 @@ function pickup_conversation() {
 
 }
 
-$TwiMLResponse = pickup_conversation();
+// $TwiMLResponse = pickup_conversation();
+
+$TwiMLResponse = dispatchGetToken();
 
 ?>
 <Response>
