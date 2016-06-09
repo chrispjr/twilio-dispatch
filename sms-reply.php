@@ -38,7 +38,9 @@ function dispatchGetToken() {
 	$ss_options = array(
 		CURLOPT_URL => $url,
 		CURLOPT_POST => true,
-		CURLOPT_RETURNTRANSFER => true
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_HEADER => 'Content-Type: application/x-www-form-urlencoded',
+		CURLOPT_HEADER => 'Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5'
 	);
 
 	curl_setopt_array($ch, $ss_options);
