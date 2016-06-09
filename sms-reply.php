@@ -23,7 +23,11 @@ function dispatchGetToken() {
 
 	$client_secret = "94611d4be20d70eaaca3f1fe6062b7ce135977662acf5e82163a48743226f4c4";
 
-	$query_data_array = array($grant_type,$client_id,$client_secret);
+	$query_data_array = array(
+		'grant_type' => $grant_type,
+		'client_id' => $client_id,
+		'client_secret' => $client_secret
+	);
 
 	$query_data = http_build_query($query_data_array);
 
