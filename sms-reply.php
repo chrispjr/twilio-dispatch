@@ -272,5 +272,7 @@ $TwiMLResponse = dispatchGetToken();
 
 ?>
 <Response>
-    <Message><?php echo $TwiMLResponse; ?></Message>
+    <Message><?php // echo $TwiMLResponse;
+    				var_dump($TwiMLResponse);
+     ?></Message>
 </Response>
