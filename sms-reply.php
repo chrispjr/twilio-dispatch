@@ -278,9 +278,9 @@ function pickup_conversation() {
 
 }
 
-// $TwiMLResponse = pickup_conversation();
+$TwiMLResponse = pickup_conversation();
 
-$TwiMLResponse = dispatchGetToken();
+// $TwiMLResponse = dispatchGetToken();
 
 ?>
 <Response>
