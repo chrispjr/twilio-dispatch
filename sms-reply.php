@@ -284,7 +284,7 @@ $TwiMLResponse = pickup_conversation();
 
 ?>
 <Response>
-    <Message><?php // echo $TwiMLResponse;
-    				var_dump($TwiMLResponse);
+    <Message><?php  echo $TwiMLResponse;
+    				// var_dump($TwiMLResponse);
      ?></Message>
 </Response>
