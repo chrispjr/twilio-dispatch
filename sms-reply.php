@@ -24,10 +24,10 @@ function new_conversation() {
 
 	} elseif (preg_match("/reset/i", $userResponse)) {
 		
-		reset_cookie_to_nil("initiation");
-		reset_cookie_to_nil("userResponse_1");
-		reset_cookie_to_nil("userResponse_2");
-		reset_cookie_to_nil("userResponse_3");
+		unset($_COOKIE["initiation"]);
+		unset($_COOKIE["userResponse_1"]);
+		unset($_COOKIE["userResponse_2"]);
+		unset($_COOKIE["userResponse_3"]);
 
 		$TwiMLResponse = "Cookies reset";
 
