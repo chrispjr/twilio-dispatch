@@ -29,6 +29,8 @@ function new_conversation() {
 		$TwiMLResponse = "Cookies reset";
 
 	}
+
+	return $TwiMLResponse;
 }
 
 
