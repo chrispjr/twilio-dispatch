@@ -2,6 +2,9 @@
 
 // header("content-type: text/xml");
 
+function reset_cookie_to_nil($cookie_name) {
+	setcookie($cookie_name,"nil");
+}
 
 function new_conversation() {
 
@@ -121,10 +124,6 @@ function ss_validate_address() {
 	curl_close($ch);
 	$ss_results = json_decode($ss_results);
 	return $ss_results;
-}
-
-function reset_cookie_to_nil($cookie_name) {
-	setcookie($cookie_name,"nil");
 }
 
 function pickup_conversation() {
