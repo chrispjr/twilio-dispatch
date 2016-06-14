@@ -301,7 +301,7 @@ function pickup_conversation() {
 
 
 
-// $TwiMLResponse = dispatchGetToken();
+$TwiMLResponse = new_conversation();
 
 ?>
 <Response>
