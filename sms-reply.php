@@ -19,7 +19,7 @@ function new_conversation() {
 		
 		$TwiMLResponse = pickup_conversation();
 
-	} elseif (preg_match("/reset/i", $userResponse) {
+	} elseif (preg_match("/reset/i", $userResponse)) {
 		
 		reset_cookie_to_nil("initiation");
 		reset_cookie_to_nil("userResponse_1");
