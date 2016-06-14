@@ -313,7 +313,5 @@ $TwiMLResponse = new_conversation();
 
 ?>
 <Response>
-    <Message><?php  echo $TwiMLResponse;
-    				// var_dump($TwiMLResponse);
-     ?></Message>
+    <Message><?php  echo $TwiMLResponse; ?></Message>
 </Response>
