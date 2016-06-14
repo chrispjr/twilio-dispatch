@@ -3,15 +3,34 @@
 // header("content-type: text/xml");
 
 
-$userResponse = $_REQUEST["Body"];
+function new_conversation() {
 
-$customerNumber = $_REQUEST['From'];
+	$userResponse = $_REQUEST["Body"];
 
-if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
+	$customerNumber = $_REQUEST['From'];
 
-	$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
+	if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
 
+		$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
+
+	}
+
+	if (preg_match("/pickup/i", $userResponse)) {
+		
+		$TwiMLResponse = pickup_conversation();
+
+	} elseif (preg_match("/reset/i", $userResponse) {
+		
+		reset_cookie_to_nil("initiation");
+		reset_cookie_to_nil("userResponse_1");
+		reset_cookie_to_nil("userResponse_2");
+		reset_cookie_to_nil("userResponse_3");
+
+		$TwiMLResponse = "Cookies reset";
+
+	}
 }
+
 
 function dispatchGetToken() {
 
@@ -278,7 +297,9 @@ function pickup_conversation() {
 
 }
 
-$TwiMLResponse = pickup_conversation();
+
+
+
 
 // $TwiMLResponse = dispatchGetToken();
 
