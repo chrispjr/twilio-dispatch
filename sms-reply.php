@@ -30,6 +30,12 @@ function new_conversation() {
 
 	}
 
+	else {
+
+		$TwiMLResponse = "Bad input";
+
+	}
+
 	return $TwiMLResponse;
 }
 
