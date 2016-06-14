@@ -3,7 +3,7 @@
 // header("content-type: text/xml");
 
 function reset_cookie_to_nil($cookie_name) {
-	setcookie($cookie_name,"nil");
+	unset($cookie_name);
 }
 
 function new_conversation() {
