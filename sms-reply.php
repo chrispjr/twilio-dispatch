@@ -26,10 +26,8 @@ function cookie_set_to_nil($cookie_name) {
 }
 
 function cookie_remove($cookie_name) {
-	
     unset($_COOKIE[$cookie_name]);
-    setcookie($cookie_name, '', time() - 3600, '/'); // empty value and old timestamp
-	
+    setcookie($cookie_name, '', time() - 3600, '/'); // empty value and old timestamp	
 }
 
 function cookie_destroy_all() {
@@ -166,6 +164,8 @@ function conversation_two() {
 
 				$serializedValidatedAddress = serialize($compiledValidAddress);
 
+				setcookie("multiple_addresses", 1);
+
 				setcookie("serializedValidatedAddress", $serializedValidatedAddress);
 
 		} else {
@@ -211,16 +211,52 @@ function conversation_three() {
 	function isExpectedResponse($userResponse) {
 
 		// regex check
+		
+		// Expected responses:
+
+		// Yes
+
+		// No
+
+		// 1-10
 
 	}
 
-	// Expected responses:
+	
 
-	// Yes
+	return $TwiMLResponse;
 
-	// No
+}
 
-	// 1-10
+function conversation_three_multiple_addresses_one() {
+
+	// what was the previous prompt?
+
+	$previousPrompt = $_COOKIE['TwiMLResponse'];
+
+	// what was the userResponse?
+
+	$userResponse = $_REQUEST["Body"];
+
+	setcookie("userResponse_2", $userResponse);
+
+	// was userResponse an expected response?
+	
+	$expectedResponse = '/^[0-9- ]+$/';
+
+	$isExpectedResponse = preg_match($expectedResponse, $userResponse);
+
+	if ($isExpectedResponse) {
+
+		if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
+
+			$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
+
+		}
+
+		$TwiMLResponse = var_dump($validatedAddress);
+
+	}
 
 	return $TwiMLResponse;
 
@@ -242,8 +278,15 @@ function pickup_conversation() {
 
 	elseif ($_COOKIE["userResponse_2"] == "nil") {
 		
+		if ($_COOKIE["multiple_addresses"] === 1) {
+			
+			$TwiMLResponse = conversation_three_multiple_addresses_one(); 
+			
+		} else {
 
-		$TwiMLResponse = conversation_three();
+			$TwiMLResponse = conversation_three();
+
+		}
 
 	}
 
