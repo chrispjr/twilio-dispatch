@@ -26,10 +26,10 @@ function cookie_set_to_nil($cookie_name) {
 }
 
 function cookie_remove($cookie_name) {
-	if (isset($_COOKIE[$cookie_name])) {
-	    unset($_COOKIE[$cookie_name]);
-	    setcookie($cookie_name, '', time() - 3600, '/'); // empty value and old timestamp
-	}
+	
+    unset($_COOKIE[$cookie_name]);
+    setcookie($cookie_name, '', time() - 3600, '/'); // empty value and old timestamp
+	
 }
 
 function ss_validate_address() {
