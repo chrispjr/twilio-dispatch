@@ -18,7 +18,10 @@ function new_conversation() {
 
 	}
 
-	if (preg_match("/pickup/i", $userResponse)) {
+	$regex_address = '/^[a-z0-9- ]+$/i';
+	$regex_pickup = '/pickup/i';
+
+	if (preg_match($regex_address, $userResponse)) {
 		
 		$TwiMLResponse = pickup_conversation();
 
@@ -126,136 +129,133 @@ function ss_validate_address() {
 	return $ss_results;
 }
 
-function pickup_conversation() {
 
-	$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
 
-	$prompt_2 = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
+/**
+ *
+ *
+ *	
+ * 
+ */
 
-	$prompt_3 = "Please confirm that your pickup address is: \n";
+$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
 
-	$prompt_unrecognizedInput = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
+$prompt_2 = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
 
-	// $userResponse_2b = build_confirm_message();
+$prompt_3 = "Please confirm that your pickup address is: \n";
 
-	// $userResponse_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
+$prompt_unrecognizedInput = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
 
-	$TwiMLResponse = "Undefined Response";
+// $userResponse_2b = build_confirm_message();
 
-	if (!isset($_COOKIE["userResponse_1"])) {
+// $userResponse_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
+
+$TwiMLResponse = "Undefined Response";
+
+function conversation_one() {
+
+	$TwiMLResponse = $prompt_1;
+
+	setcookie("initiation", $_REQUEST["Body"]);
+	reset_cookie_to_nil("userResponse_1");
+	reset_cookie_to_nil("userResponse_2");
+	reset_cookie_to_nil("userResponse_3");
+
+	return $TwiMLResponse;
+
+}
+
+function conversation_two() {
+
+	// userResponse: Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St
+
+	// what was the question we asked?
+
+	$previoususerResponse = $_COOKIE['initiation'];
+
+	// what was the userResponse?
+
+	$userResponse = $_REQUEST["Body"];
+
+	setcookie("userResponse_1", $userResponse);
+
+	// what are the expected responses?
+
+	$expectedResponse = '/^[a-z0-9- ]+$/i';
+
+	// was the userResponse an expected user response (an address in this case)?
+
+	$isExpectedResponse = preg_match($expectedResponse, $userResponse);
+
+	// does it match a (quick, free) regex match? $add_check = ;
+
+	if ($isExpectedResponse) {
 		
-		$TwiMLResponse = $prompt_1;
+		// if so, proceed to check against the smartystreets API
 
-		setcookie("initiation", $_REQUEST["Body"]);
-		reset_cookie_to_nil("userResponse_1");
-		reset_cookie_to_nil("userResponse_2");
-		reset_cookie_to_nil("userResponse_3");
+		$validatedAddress = ss_validate_address();
 
-	}
+		$countValidatedAddress = count($validatedAddress);
 
-	elseif ($_COOKIE["userResponse_1"] == "nil") {
-
-		// userResponse: Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St
-
-		// what was the question we asked?
-
-		$previoususerResponse = $_COOKIE['initiation'];
-
-		// what was the userResponse?
-
-		$userResponse = $_REQUEST["Body"];
-
-		setcookie("userResponse_1", $userResponse);
-
-		// what are the expected responses?
-
-		$expectedResponse = '/^[a-z0-9- ]+$/i';
-
-		// was the userResponse an expected user response (an address in this case)?
-
-		$isExpectedResponse = preg_match($expectedResponse, $userResponse);
-
-		// does it match a (quick, free) regex match? $add_check = ;
-
-		if ($isExpectedResponse) {
+		if ($countValidatedAddress === 0) {
 			
-			// if so, proceed to check against the smartystreets API
+			reset_cookie_to_nil("userResponse_1");
 
-			$validatedAddress = ss_validate_address();
+			$TwiMLResponse = $prompt_2;
 
-			$countValidatedAddress = count($validatedAddress);
+		} elseif ($countValidatedAddress === 1) {
 
-			if ($countValidatedAddress === 0) {
-				
-				reset_cookie_to_nil("userResponse_1");
+			$street = $validatedAddress[0]->delivery_line_1;
 
-				$TwiMLResponse = $prompt_2;
+			$city = $validatedAddress[0]->last_line;
 
-			} elseif ($countValidatedAddress === 1) {
+			$compiledValidAddress = array($street, $city);
 
-				$street = $validatedAddress[0]->delivery_line_1;
+			$serializedValidatedAddress = serialize($compiledValidAddress);
 
-				$city = $validatedAddress[0]->last_line;
+			setcookie("serializedValidatedAddress", $serializedValidatedAddress);
 
-				$compiledValidAddress = array($street, $city);
+			// $TwiMLResponse = "Please confirm that your pickup address is:\n $street\n $city";
+
+			$TwiMLResponse = $prompt_3."$street\n $city";
+
+		} elseif($countValidatedAddress > 1) {
+
+			$TwiMLResponse = "We found more than one address matching the information you supplied.\n";
+
+				$i = 0;
+
+				foreach ($validatedAddress as $address) {
+
+					$street = $address->delivery_line_1;
+
+					$city = $address->last_line;
+
+					$compiledValidAddress[$i]['street'] = $street;
+
+					$compiledValidAddress[$i]['city'] = $city;
+
+					$i++;
+
+				}
+
+				$i = 1;
+
+				foreach ($compiledValidAddress as $address) {
+					
+					$TwiMLResponse .= "Reply \"$i\" to select\n";
+
+					$TwiMLResponse .= "$i: ".$address['street'].", ".$address['city']."\n";
+
+					$i++;
+
+				}
 
 				$serializedValidatedAddress = serialize($compiledValidAddress);
 
 				setcookie("serializedValidatedAddress", $serializedValidatedAddress);
 
-				// $TwiMLResponse = "Please confirm that your pickup address is:\n $street\n $city";
-
-				$TwiMLResponse = $prompt_3."$street\n $city";
-
-			} elseif($countValidatedAddress > 1) {
-
-				$TwiMLResponse = "We found more than one address matching the information you supplied.\n";
-
-					$i = 0;
-
-					foreach ($validatedAddress as $address) {
-
-						$street = $address->delivery_line_1;
-
-						$city = $address->last_line;
-
-						$compiledValidAddress[$i]['street'] = $street;
-
-						$compiledValidAddress[$i]['city'] = $city;
-
-						$i++;
-
-					}
-
-					$i = 1;
-
-					foreach ($compiledValidAddress as $address) {
-						
-						$TwiMLResponse .= "Reply \"$i\" to select\n";
-
-						$TwiMLResponse .= "$i: ".$address['street'].", ".$address['city']."\n";
-
-						$i++;
-
-					}
-
-					$serializedValidatedAddress = serialize($compiledValidAddress);
-
-					setcookie("serializedValidatedAddress", $serializedValidatedAddress);
-
-			} else {
-
-				// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
-
-				reset_cookie_to_nil("userResponse_1");
-
-				$TwiMLResponse = $prompt_unrecognizedInput;
-
-			}
-
-		}
-
-		else {
+		} else {
 
 			// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
 
@@ -267,34 +267,70 @@ function pickup_conversation() {
 
 	}
 
+	else {
+
+		// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
+
+		reset_cookie_to_nil("userResponse_1");
+
+		$TwiMLResponse = $prompt_unrecognizedInput;
+
+	}
+
+	return $TwiMLResponse;
+
+}
+
+function conversation_three() {
+
+	// what was the previous prompt?
+
+	$previousPrompt = $_COOKIE['TwiMLResponse'];
+
+	// what was the userResponse?
+
+	$userResponse = $_REQUEST["Body"];
+
+	setcookie("userResponse_2", $userResponse);
+
+	// was userResponse an expected response?
+
+	function isExpectedResponse($userResponse) {
+
+		// regex check
+
+	}
+
+	// Expected responses:
+
+	// Yes
+
+	// No
+
+	// 1-10
+
+	return $TwiMLResponse;
+
+}
+
+function pickup_conversation() {
+
+	if (!isset($_COOKIE["userResponse_1"])) {
+		
+		conversation_one();
+
+	}
+
+	elseif ($_COOKIE["userResponse_1"] == "nil") {
+
+		conversation_two();
+
+	}
+
 	elseif ($_COOKIE["userResponse_2"] == "nil") {
 		
 
-		// what was the previous prompt?
-
-		$previousPrompt = $_COOKIE['TwiMLResponse'];
-
-		// what was the userResponse?
-
-		$userResponse = $_REQUEST["Body"];
-
-		setcookie("userResponse_2", $userResponse);
-
-		// was userResponse an expected response?
-
-		function isExpectedResponse($userResponse) {
-
-			// regex check
-
-		}
-
-		// Expected responses:
-
-		// Yes
-
-		// No
-
-		// 1-10
+		conversation_three();
 
 	}
 
