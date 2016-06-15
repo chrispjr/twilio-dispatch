@@ -112,6 +112,8 @@ function conversation_two() {
 			
 			cookie_reset_to_nil("userResponse_1");
 
+			$prompt_2 = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
+
 			$TwiMLResponse = $prompt_2;
 
 		} elseif ($countValidatedAddress === 1) {
@@ -127,6 +129,8 @@ function conversation_two() {
 			setcookie("serializedValidatedAddress", $serializedValidatedAddress);
 
 			// $TwiMLResponse = "Please confirm that your pickup address is:\n $street\n $city";
+
+			$prompt_3 = "Please confirm that your pickup address is: \n";
 
 			$TwiMLResponse = $prompt_3."$street\n $city";
 
