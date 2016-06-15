@@ -32,6 +32,18 @@ function cookie_remove($cookie_name) {
 	
 }
 
+function cookies_destroy_all() {
+	if (isset($_SERVER['HTTP_COOKIE'])) {
+	    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+	    foreach($cookies as $cookie) {
+	        $parts = explode('=', $cookie);
+	        $name = trim($parts[0]);
+	        setcookie($name, '', time()-1000);
+	        setcookie($name, '', time()-1000, '/');
+	    }
+	}
+}
+
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
 	$street = urlencode($street);
