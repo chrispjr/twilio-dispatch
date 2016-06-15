@@ -207,20 +207,20 @@ function pickup_conversation() {
 
 	if (!isset($_COOKIE["userResponse_1"])) {
 		
-		conversation_one();
+		$TwiMLResponse = conversation_one();
 
 	}
 
 	elseif ($_COOKIE["userResponse_1"] == "nil") {
 
-		conversation_two();
+		$TwiMLResponse = conversation_two();
 
 	}
 
 	elseif ($_COOKIE["userResponse_2"] == "nil") {
 		
 
-		conversation_three();
+		$TwiMLResponse = conversation_three();
 
 	}
 
