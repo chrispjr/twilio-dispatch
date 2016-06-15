@@ -250,18 +250,18 @@ function new_conversation() {
 	$regex_address = '/^[a-z0-9- ]+$/i';
 	$regex_pickup = '/pickup/i';
 
-	if (preg_match($regex_address, $userResponse)) {
-		
-		$TwiMLResponse = pickup_conversation();
-
-	} elseif (preg_match("/reset/i", $userResponse)) {
-		
+	if (preg_match("/reset/i", $userResponse)) {
+			
 		unset($_COOKIE["initiation"]);
 		unset($_COOKIE["userResponse_1"]);
 		unset($_COOKIE["userResponse_2"]);
 		unset($_COOKIE["userResponse_3"]);
 
 		$TwiMLResponse = "Cookies reset";
+
+	} elseif (preg_match($regex_address, $userResponse)) {
+		
+		$TwiMLResponse = pickup_conversation();
 
 	}
 
