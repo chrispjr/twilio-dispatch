@@ -42,6 +42,8 @@ function ss_validate_address() {
 
 function conversation_one() {
 
+	$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
+
 	$TwiMLResponse = $prompt_1;
 
 	setcookie("initiation", $_REQUEST["Body"]);
