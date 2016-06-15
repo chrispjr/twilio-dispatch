@@ -44,7 +44,7 @@ function cookie_destroy_all() {
 
 function safe_serialize($string_to_serialize) {
 
-	$serialized_string = safe_serialize(base64_encode($string_to_serialize));
+	$serialized_string = base64_encode(serialize($string_to_serialize));
 
 	return $serialized_string;
 
@@ -52,7 +52,7 @@ function safe_serialize($string_to_serialize) {
 
 function safe_unserialize($string_to_unserialize) {
 
-	$unserialized_string = unserialize(base64_encode($string_to_unserialize));
+	$unserialized_string = unserialize(base64_decode($string_to_unserialize));
 
 	return $unserialized_string;
 
