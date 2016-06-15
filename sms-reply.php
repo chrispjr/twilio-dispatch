@@ -17,12 +17,19 @@ $prompt_unrecognizedInput = "Your input is not recognized as an address. Please 
 
 $TwiMLResponse = "Undefined Response";
 
-function reset_cookie_to_nil($cookie_name) {
+function cookie_reset_to_nil($cookie_name) {
 	unset($cookie_name);
 }
 
-function set_cookie_to_nil($cookie_name) {
+function cookie_set_to_nil($cookie_name) {
 	setcookie($cookie_name, "nil");
+}
+
+function cookie_remove($cookie_name) {
+	if (isset($_COOKIE[$cookie_name])) {
+	    unset($_COOKIE[$cookie_name]);
+	    setcookie($cookie_name, '', time() - 3600, '/'); // empty value and old timestamp
+	}
 }
 
 function ss_validate_address() {
@@ -51,9 +58,9 @@ function conversation_one() {
 	$TwiMLResponse = $prompt_1;
 
 	setcookie("initiation", $_REQUEST["Body"]);
-	set_cookie_to_nil("userResponse_1");
-	set_cookie_to_nil("userResponse_2");
-	set_cookie_to_nil("userResponse_3");
+	cookie_set_to_nil("userResponse_1");
+	cookie_set_to_nil("userResponse_2");
+	cookie_set_to_nil("userResponse_3");
 
 	return $TwiMLResponse;
 
@@ -93,7 +100,7 @@ function conversation_two() {
 
 		if ($countValidatedAddress === 0) {
 			
-			reset_cookie_to_nil("userResponse_1");
+			cookie_reset_to_nil("userResponse_1");
 
 			$TwiMLResponse = $prompt_2;
 
@@ -153,7 +160,7 @@ function conversation_two() {
 
 			// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
 
-			reset_cookie_to_nil("userResponse_1");
+			cookie_reset_to_nil("userResponse_1");
 
 			$TwiMLResponse = $prompt_unrecognizedInput;
 
@@ -165,7 +172,7 @@ function conversation_two() {
 
 		// otherwise, respond letting the user know their response was unaccepted, reiterate the expected responses, and reset the current cookie
 
-		reset_cookie_to_nil("userResponse_1");
+		cookie_reset_to_nil("userResponse_1");
 
 		$TwiMLResponse = $prompt_unrecognizedInput;
 
@@ -252,10 +259,10 @@ function new_conversation() {
 
 	if (preg_match("/reset/i", $userResponse)) {
 
-		set_cookie_to_nil("initiation");
-		set_cookie_to_nil("userResponse_1");
-		set_cookie_to_nil("userResponse_2");
-		set_cookie_to_nil("userResponse_3");
+		cookie_set_to_nil("initiation");
+		cookie_set_to_nil("userResponse_1");
+		cookie_set_to_nil("userResponse_2");
+		cookie_set_to_nil("userResponse_3");
 			
 		unset($_COOKIE["initiation"]);
 		unset($_COOKIE["userResponse_1"]);
