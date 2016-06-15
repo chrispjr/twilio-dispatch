@@ -42,6 +42,22 @@ function cookie_destroy_all() {
 	}
 }
 
+function safe_serialize($string_to_serialize) {
+
+	$serialized_string = safe_serialize(base64_encode($string_to_serialize));
+
+	return $serialized_string;
+
+}
+
+function safe_unserialize($string_to_unserialize) {
+
+	$unserialized_string = unserialize(base64_encode($string_to_unserialize));
+
+	return $unserialized_string;
+
+}
+
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
 	$street = urlencode($street);
@@ -124,7 +140,7 @@ function conversation_two() {
 
 			$compiledValidAddress = array($street, $city);
 
-			$serializedValidatedAddress = serialize($compiledValidAddress);
+			$serializedValidatedAddress = safe_serialize($compiledValidAddress);
 
 			setcookie("serializedValidatedAddress", $serializedValidatedAddress);
 
@@ -166,7 +182,7 @@ function conversation_two() {
 
 				}
 
-				$serializedValidatedAddress = serialize($compiledValidAddress);
+				$serializedValidatedAddress = safe_serialize($compiledValidAddress);
 
 				setcookie("multiple_addresses", 1);
 
@@ -216,17 +232,37 @@ function conversation_three() {
 
 		// regex check
 		
-		// Expected responses:
+		$regex_yes_response = '/yes/i';
 
-		// Yes
+		$regex_no_response = '/no/i';
 
-		// No
+		$yes_response = preg_match($regex_yes_response, $userResponse);
 
-		// 1-10
+		$no_response = preg_match($regex_yes_response, $userResponse);
+		
+		if ($yes_response) {
+			
+			return true;
+
+		} elseif ($no_response) {
+
+			return true;
+
+		} else {
+
+			return false;
+
+		}
 
 	}
 
-	
+	if (is_expected_response($userResponse)) {
+		
+		$prompt_4 = "Thanks. We’ll text you when a driver is on the way. You can reply \"Cancel\" at any time to cancel your request.";
+
+		$TwiMLResponse = $prompt_4;
+		
+	}
 
 	return $TwiMLResponse;
 
@@ -309,7 +345,7 @@ function new_conversation() {
 
 	if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
 
-		$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
+		$validatedAddress = safe_unserialize($_COOKIE['serializedValidatedAddress']);
 
 	}
 
