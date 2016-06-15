@@ -32,7 +32,7 @@ function cookie_remove($cookie_name) {
 	
 }
 
-function cookies_destroy_all() {
+function cookie_destroy_all() {
 	if (isset($_SERVER['HTTP_COOKIE'])) {
 	    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
 	    foreach($cookies as $cookie) {
@@ -282,6 +282,8 @@ function new_conversation() {
 		cookie_remove("userResponse_1");
 		cookie_remove("userResponse_2");
 		cookie_remove("userResponse_3");
+
+		cookie_destroy_all();
 
 		$TwiMLResponse = "Cookies reset";
 
