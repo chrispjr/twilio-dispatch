@@ -264,10 +264,12 @@ function new_conversation() {
 		cookie_set_to_nil("userResponse_2");
 		cookie_set_to_nil("userResponse_3");
 			
-		unset($_COOKIE["initiation"]);
-		unset($_COOKIE["userResponse_1"]);
-		unset($_COOKIE["userResponse_2"]);
-		unset($_COOKIE["userResponse_3"]);
+		cookie_remove("serializedValidatedAddress");
+		cookie_remove("TwiMLResponse");
+		cookie_remove("initiation");
+		cookie_remove("userResponse_1");
+		cookie_remove("userResponse_2");
+		cookie_remove("userResponse_3");
 
 		$TwiMLResponse = "Cookies reset";
 
