@@ -21,73 +21,6 @@ function reset_cookie_to_nil($cookie_name) {
 	unset($cookie_name);
 }
 
-
-
-
-function dispatchGetToken() {
-
-	$url = "https://api-stg.dispatch.me/oauth/token?";
-
-	$grant_type = "client_credentials";
-
-	$client_id = "e458e4297864482bbd7cce0697d33770cbc17e10a19ab5d3a90005e0ee247154";
-
-	$client_secret = "94611d4be20d70eaaca3f1fe6062b7ce135977662acf5e82163a48743226f4c4";
-
-	$query_data_array = array(
-		'grant_type' => $grant_type,
-		'client_id' => $client_id,
-		'client_secret' => $client_secret
-	);
-
-	$query_data = http_build_query($query_data_array);
-
-	$url .= $query_data;
-
-	$ch = curl_init();
-
-	$ss_options = array(
-		CURLOPT_URL => $url,
-		CURLOPT_POST => true,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_HTTPHEADER => array('Content-Type: application/x-www-form-urlencoded', 'Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5'),
-	);
-
-	curl_setopt_array($ch, $ss_options);
-
-	$ss_results = curl_exec($ch);
-
-	curl_close($ch);
-
-	$ss_results = json_decode($ss_results);
-
-	return $ss_results;
-
-	// return $url;
-
-}
-
-function dispatchGetCustomer($customerNumber) {
-	
-	
-
-
-
-	$clientID = "";
-
-	
-
-	$dispatch_options = array(
-		CURLOPT_URL => $url,
-		CURLOPT_POST => false,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_HTTPHEADER => array('Content-Type: application/json','Accept: application/json')
-	);
-	curl_setopt_array($ch, $dispatch_options);
-
-}
-
-
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
 	$street = urlencode($street);
@@ -337,6 +270,69 @@ function new_conversation() {
 
 
 $TwiMLResponse = new_conversation();
+
+// function dispatchGetToken() {
+
+// 	$url = "https://api-stg.dispatch.me/oauth/token?";
+
+// 	$grant_type = "client_credentials";
+
+// 	$client_id = "e458e4297864482bbd7cce0697d33770cbc17e10a19ab5d3a90005e0ee247154";
+
+// 	$client_secret = "94611d4be20d70eaaca3f1fe6062b7ce135977662acf5e82163a48743226f4c4";
+
+// 	$query_data_array = array(
+// 		'grant_type' => $grant_type,
+// 		'client_id' => $client_id,
+// 		'client_secret' => $client_secret
+// 	);
+
+// 	$query_data = http_build_query($query_data_array);
+
+// 	$url .= $query_data;
+
+// 	$ch = curl_init();
+
+// 	$ss_options = array(
+// 		CURLOPT_URL => $url,
+// 		CURLOPT_POST => true,
+// 		CURLOPT_RETURNTRANSFER => true,
+// 		CURLOPT_HTTPHEADER => array('Content-Type: application/x-www-form-urlencoded', 'Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5'),
+// 	);
+
+// 	curl_setopt_array($ch, $ss_options);
+
+// 	$ss_results = curl_exec($ch);
+
+// 	curl_close($ch);
+
+// 	$ss_results = json_decode($ss_results);
+
+// 	return $ss_results;
+
+// 	// return $url;
+
+// }
+
+// function dispatchGetCustomer($customerNumber) {
+	
+	
+
+
+
+// 	$clientID = "";
+
+	
+
+// 	$dispatch_options = array(
+// 		CURLOPT_URL => $url,
+// 		CURLOPT_POST => false,
+// 		CURLOPT_RETURNTRANSFER => true,
+// 		CURLOPT_HTTPHEADER => array('Content-Type: application/json','Accept: application/json')
+// 	);
+// 	curl_setopt_array($ch, $dispatch_options);
+
+// }
 
 ?>
 <Response>
