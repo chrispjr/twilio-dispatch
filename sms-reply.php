@@ -251,6 +251,11 @@ function new_conversation() {
 	$regex_pickup = '/pickup/i';
 
 	if (preg_match("/reset/i", $userResponse)) {
+
+		set_cookie_to_nil("initiation");
+		set_cookie_to_nil("userResponse_1");
+		set_cookie_to_nil("userResponse_2");
+		set_cookie_to_nil("userResponse_3");
 			
 		unset($_COOKIE["initiation"]);
 		unset($_COOKIE["userResponse_1"]);
