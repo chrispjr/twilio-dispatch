@@ -21,6 +21,10 @@ function reset_cookie_to_nil($cookie_name) {
 	unset($cookie_name);
 }
 
+function set_cookie_to_nil($cookie_name) {
+	setcookie($cookie_name, "nil");
+}
+
 function ss_validate_address() {
 	$street = $_REQUEST['Body'];
 	$street = urlencode($street);
@@ -47,9 +51,9 @@ function conversation_one() {
 	$TwiMLResponse = $prompt_1;
 
 	setcookie("initiation", $_REQUEST["Body"]);
-	reset_cookie_to_nil("userResponse_1");
-	reset_cookie_to_nil("userResponse_2");
-	reset_cookie_to_nil("userResponse_3");
+	set_cookie_to_nil("userResponse_1");
+	set_cookie_to_nil("userResponse_2");
+	set_cookie_to_nil("userResponse_3");
 
 	return $TwiMLResponse;
 
