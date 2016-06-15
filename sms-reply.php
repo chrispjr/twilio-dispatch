@@ -1,6 +1,20 @@
 <?php
 
 // header("content-type: text/xml");
+// 
+// $prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
+
+$prompt_2 = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
+
+$prompt_3 = "Please confirm that your pickup address is: \n";
+
+$prompt_unrecognizedInput = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
+
+// $userResponse_2b = build_confirm_message();
+
+// $userResponse_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
+
+$TwiMLResponse = "Undefined Response";
 
 function reset_cookie_to_nil($cookie_name) {
 	unset($cookie_name);
@@ -128,29 +142,6 @@ function ss_validate_address() {
 	$ss_results = json_decode($ss_results);
 	return $ss_results;
 }
-
-
-
-/**
- *
- *
- *	
- * 
- */
-
-$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
-
-$prompt_2 = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
-
-$prompt_3 = "Please confirm that your pickup address is: \n";
-
-$prompt_unrecognizedInput = "Your input is not recognized as an address. Please reply the street address where you would like to be picked up. Example: \nExample: 1500 W Baltimore St";
-
-// $userResponse_2b = build_confirm_message();
-
-// $userResponse_3 = "Thank you. We'll text you once we've booked you a ride. Thanks for using MyRide!";
-
-$TwiMLResponse = "Undefined Response";
 
 function conversation_one() {
 
