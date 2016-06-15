@@ -2,7 +2,8 @@
 
 // header("content-type: text/xml");
 // 
-// $prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
+ 
+$prompt_1 = "Hello! What's your address? No city or state, please. \nExample: 1500 W Baltimore St";
 
 $prompt_2 = "I'm sorry. We could not match the information you supplied with a valid address. Please try again.";
 
