@@ -343,12 +343,6 @@ function new_conversation() {
 
 	$customerNumber = $_REQUEST['From'];
 
-	if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
-
-		$validatedAddress = safe_unserialize($_COOKIE['serializedValidatedAddress']);
-
-	}
-
 	$regex_address = '/^[a-z0-9- ]+$/i';
 	$regex_pickup = '/pickup/i';
 
@@ -372,6 +366,12 @@ function new_conversation() {
 
 	} elseif (preg_match($regex_address, $userResponse)) {
 		
+		if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
+
+			$validatedAddress = safe_unserialize($_COOKIE['serializedValidatedAddress']);
+
+		}
+
 		$TwiMLResponse = pickup_conversation();
 
 	}
