@@ -348,6 +348,8 @@ function new_conversation() {
 
 	if (preg_match("/reset/i", $userResponse)) {
 
+		cookie_destroy_all();
+
 		cookie_set_to_nil("initiation");
 		cookie_set_to_nil("userResponse_1");
 		cookie_set_to_nil("userResponse_2");
@@ -359,8 +361,6 @@ function new_conversation() {
 		cookie_remove("userResponse_1");
 		cookie_remove("userResponse_2");
 		cookie_remove("userResponse_3");
-
-		cookie_destroy_all();
 
 		$TwiMLResponse = "Cookies reset";
 
