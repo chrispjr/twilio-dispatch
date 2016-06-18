@@ -290,7 +290,7 @@ function conversation_three_multiple_addresses_one() {
 
 		if (isset($_COOKIE['serializedValidatedAddress']) && !empty($_COOKIE['serializedValidatedAddress'])) {
 
-			$validatedAddress = unserialize($_COOKIE['serializedValidatedAddress']);
+			$validatedAddress = safe_unserialize($_COOKIE['serializedValidatedAddress']);
 
 		}
 
@@ -318,7 +318,7 @@ function pickup_conversation() {
 
 	elseif ($_COOKIE["userResponse_2"] == "nil") {
 		
-		if ($_COOKIE["multiple_addresses"] === 1) {
+		if (isset($_COOKIE["multiple_addresses"])) {
 			
 			$TwiMLResponse = conversation_three_multiple_addresses_one(); 
 			
