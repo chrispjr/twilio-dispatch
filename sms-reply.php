@@ -349,11 +349,6 @@ function new_conversation() {
 	if (preg_match("/reset/i", $userResponse)) {
 
 		cookie_destroy_all();
-
-		cookie_set_to_nil("initiation");
-		cookie_set_to_nil("userResponse_1");
-		cookie_set_to_nil("userResponse_2");
-		cookie_set_to_nil("userResponse_3");
 			
 		cookie_remove("serializedValidatedAddress");
 		cookie_remove("TwiMLResponse");
