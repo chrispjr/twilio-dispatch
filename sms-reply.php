@@ -42,19 +42,19 @@ function cookie_destroy_all() {
 	}
 }
 
-function safe_serialize($string_to_serialize) {
+function safe_serialize($multidimensional_array) {
 
-	$serialized_string = base64_encode(serialize($string_to_serialize));
+	$safe_string_to_store = base64_encode(serialize($multidimensional_array));
 
-	return $serialized_string;
+	return $safe_string_to_store;
 
 }
 
-function safe_unserialize($string_to_unserialize) {
+function safe_unserialize($encoded_serialized_string) {
 
-	$unserialized_string = unserialize(base64_decode($string_to_unserialize));
+	$array_restored_from_cookie = unserialize(base64_decode($encoded_serialized_string));
 
-	return $unserialized_string;
+	return $array_restored_from_cookie;
 
 }
 
